@@ -15,16 +15,15 @@ namespace ConsoleUI
             ProductTest();
             //IoC ile new'lemek düzelecek.
             //CategoryTest();
-
-            Console.ReadLine();
         }
+
 
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
             foreach (var category in categoryManager.GetAll())
             {
-                Console.WriteLine("Cateogry Name = " + category.CategoryName);
+                Console.WriteLine(category.CategoryName);
             }
         }
 
@@ -32,10 +31,21 @@ namespace ConsoleUI
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
 
-            foreach (var product in productManager.GetProductDetails())
+            var result = productManager.GetProductDetails();
+
+            if (result.Success)
             {
-                Console.WriteLine("Product = " + product.ProductName + " --->"+ product.CategoryName);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + " --->" + product.CategoryName);
+                }
             }
+
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+ 
         }
     }
 }
