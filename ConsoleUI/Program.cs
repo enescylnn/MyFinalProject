@@ -7,13 +7,9 @@ namespace ConsoleUI
 {
     class Program
     {
-        //SOLID
-        //Open Closed Principle
         static void Main(string[] args)
         {
-            //Data Transformation Object
             ProductTest();
-            //IoC ile new'lemek düzelecek.
             //CategoryTest();
         }
 
